@@ -115,13 +115,13 @@ const Services = () => {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-800 to-blue-900 text-white py-20">
+      <section className="text-white py-20" style={{ background: 'linear-gradient(to right, #1a1a1a, #2d2d2d)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Our Logistics Services
             </h1>
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
               Comprehensive cargo solutions designed to meet every shipping need, 
               from small parcels to large industrial shipments.
             </p>
@@ -137,10 +137,10 @@ const Services = () => {
               <div key={index} className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''}`}>
                 <div className={`space-y-6 ${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
                   <div className="flex items-center space-x-4">
-                    <div className="bg-blue-100 w-12 h-12 rounded-lg flex items-center justify-center">
-                      <service.icon className="h-6 w-6 text-blue-800" />
+                    <div className="rounded-lg w-12 h-12 flex items-center justify-center" style={{ backgroundColor: '#f9b222' }}>
+                      <service.icon className="h-6 w-6 text-white" />
                     </div>
-                    <h2 className="text-3xl font-bold text-gray-900">{service.title}</h2>
+                    <h2 className="text-3xl font-bold" style={{ color: '#1a1a1a' }}>{service.title}</h2>
                   </div>
                   
                   <p className="text-lg text-gray-600 leading-relaxed">
@@ -148,23 +148,23 @@ const Services = () => {
                   </p>
                   
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">Key Features:</h3>
+                    <h3 className="text-lg font-semibold mb-3" style={{ color: '#1a1a1a' }}>Key Features:</h3>
                     <ul className="space-y-2">
                       {service.features.map((feature, fIndex) => (
                         <li key={fIndex} className="flex items-center space-x-3">
-                          <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0" />
+                          <CheckCircle className="h-5 w-5 flex-shrink-0" style={{ color: '#f9b222' }} />
                           <span className="text-gray-600">{feature}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
                   
-                  <div className="bg-blue-50 rounded-lg p-4">
+                  <div className="rounded-lg p-4" style={{ backgroundColor: '#f6f6f6' }}>
                     <div className="flex items-center space-x-2 mb-2">
-                      <Globe className="h-5 w-5 text-blue-800" />
-                      <span className="font-semibold text-blue-900">Coverage Areas:</span>
+                      <Globe className="h-5 w-5" style={{ color: '#f9b222' }} />
+                      <span className="font-semibold" style={{ color: '#1a1a1a' }}>Coverage Areas:</span>
                     </div>
-                    <p className="text-blue-800">{service.regions}</p>
+                    <p style={{ color: '#1a1a1a' }}>{service.regions}</p>
                   </div>
                 </div>
                 
@@ -174,7 +174,7 @@ const Services = () => {
                     alt={service.title}
                     className="rounded-xl shadow-xl w-full h-64 object-cover"
                   />
-                  <div className="absolute inset-0 bg-blue-900 opacity-10 rounded-xl"></div>
+                  <div className="absolute inset-0 opacity-10 rounded-xl" style={{ backgroundColor: '#1a1a1a' }}></div>
                 </div>
               </div>
             ))}
@@ -183,10 +183,10 @@ const Services = () => {
       </section>
 
       {/* Specialized Services */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16" style={{ backgroundColor: '#f6f6f6' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#1a1a1a' }}>
               Specialized Nepal Exports
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -198,7 +198,7 @@ const Services = () => {
             {specializedServices.map((service, index) => (
               <div key={index} className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
                 <div className="text-4xl mb-4">{service.icon}</div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">{service.title}</h3>
+                <h3 className="text-xl font-semibold mb-3" style={{ color: '#1a1a1a' }}>{service.title}</h3>
                 <p className="text-gray-600">{service.description}</p>
               </div>
             ))}
@@ -210,7 +210,7 @@ const Services = () => {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#1a1a1a' }}>
               Our Service Process
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -226,10 +226,10 @@ const Services = () => {
               { step: '04', title: 'Delivery', description: 'Safe delivery to final destination with tracking' }
             ].map((process, index) => (
               <div key={index} className="text-center relative group">
-                <div className="bg-blue-800 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-900 transition-colors duration-200">
+                <div className="text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 transition-colors duration-200" style={{ backgroundColor: '#f9b222' }}>
                   <span className="text-xl font-bold">{process.step}</span>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">{process.title}</h3>
+                <h3 className="text-lg font-semibold mb-2" style={{ color: '#1a1a1a' }}>{process.title}</h3>
                 <p className="text-gray-600 text-sm">{process.description}</p>
                 {index < 3 && (
                   <ArrowRight className="hidden lg:block absolute top-8 -right-4 h-6 w-6 text-gray-300" />
@@ -241,25 +241,29 @@ const Services = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-blue-800 to-blue-900 text-white">
+      <section className="py-16 text-white" style={{ background: 'linear-gradient(to right, #1a1a1a, #2d2d2d)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Need a Custom Solution?
           </h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
             Every business has unique logistics needs. Let us create a tailored solution for your cargo requirements.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="/quote"
-              className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center space-x-2"
+              className="text-white px-8 py-4 rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center space-x-2"
+              style={{ backgroundColor: '#f9b222' }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#e6a01e'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#f9b222'}
             >
               <span>Get Custom Quote</span>
               <ArrowRight className="h-5 w-5" />
             </a>
             <a
               href="/contact"
-              className="border-2 border-white text-white hover:bg-white hover:text-blue-900 px-8 py-4 rounded-lg font-semibold transition-colors duration-200"
+              className="border-2 border-white text-white hover:bg-white px-8 py-4 rounded-lg font-semibold transition-colors duration-200"
+              style={{ ':hover': { color: '#1a1a1a' } }}
             >
               Speak with Expert
             </a>

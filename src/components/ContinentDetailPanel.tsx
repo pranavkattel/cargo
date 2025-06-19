@@ -18,10 +18,10 @@ interface ContinentDetailPanelProps {
 
 const ContinentDetailPanel: React.FC<ContinentDetailPanelProps> = ({ continent, onClose }) => {
   return (
-    <div className="absolute top-1/2 right-4 md:right-8 transform -translate-y-1/2 bg-black bg-opacity-70 text-white p-6 rounded-lg shadow-2xl w-full max-w-sm md:max-w-md z-10">
+    <div className="absolute top-1/2 right-4 md:right-8 transform -translate-y-1/2 text-white p-6 rounded-lg shadow-2xl w-full max-w-sm md:max-w-md z-10" style={{ backgroundColor: 'rgba(0, 150, 199, 0.95)' }}>
       <button
         onClick={onClose}
-        className="absolute top-3 right-3 text-gray-300 hover:text-white transition-colors"
+        className="absolute top-3 right-3 text-blue-100 hover:text-white transition-colors"
         aria-label="Close panel"
       >
         <X size={24} />
@@ -37,7 +37,7 @@ const ContinentDetailPanel: React.FC<ContinentDetailPanelProps> = ({ continent, 
         />
       </div>
 
-      <p className="text-sm text-gray-300 mb-6 leading-relaxed">
+      <p className="text-sm text-blue-100 mb-6 leading-relaxed">
         {continent.description}
       </p>
 
@@ -46,11 +46,10 @@ const ContinentDetailPanel: React.FC<ContinentDetailPanelProps> = ({ continent, 
           <h3 className="text-xl font-semibold mb-3">Key Locations</h3>
           <div className="space-y-3 max-h-48 overflow-y-auto pr-2">
             {continent.keyLocations.map(location => (
-              <div key={location.name} className="flex items-center space-x-3 p-2 bg-white bg-opacity-10 rounded">
+              <div key={location.name} className="flex items-center space-x-3 p-2 rounded" style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}>
                 <img src={location.image} alt={location.name} className="w-16 h-12 object-cover rounded-sm"/>
                 <div>
                   <h4 className="font-medium">{location.name}</h4>
-                  {/* <p className="text-xs text-gray-400">{location.description}</p> */}
                 </div>
               </div>
             ))}
@@ -59,7 +58,10 @@ const ContinentDetailPanel: React.FC<ContinentDetailPanelProps> = ({ continent, 
       )}
       
       <button 
-        className="mt-6 w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2.5 px-4 rounded-md transition-colors duration-200"
+        className="mt-6 w-full text-white font-semibold py-2.5 px-4 rounded-md transition-colors duration-200"
+        style={{ backgroundColor: '#F9B222' }}
+        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#e6a01e'}
+        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#F9B222'}
       >
         EXPLORE {continent.name.toUpperCase()}
       </button>
@@ -68,3 +70,4 @@ const ContinentDetailPanel: React.FC<ContinentDetailPanelProps> = ({ continent, 
 };
 
 export default ContinentDetailPanel;
+

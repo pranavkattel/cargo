@@ -90,13 +90,13 @@ const Blog = () => {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-800 to-blue-900 text-white py-20">
+      <section className="text-white py-20" style={{ background: 'linear-gradient(to right, #1a1a1a, #2d2d2d)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Cargo & Trade Insights
             </h1>
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
               Stay informed with the latest news, tips, and insights about international 
               shipping, trade regulations, and Nepal's export industry.
             </p>
@@ -109,7 +109,7 @@ const Blog = () => {
         <section className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Featured Article</h2>
+              <h2 className="text-3xl font-bold mb-4" style={{ color: '#1a1a1a' }}>Featured Article</h2>
             </div>
             
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
@@ -121,7 +121,7 @@ const Blog = () => {
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute top-4 left-4">
-                    <span className="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                    <span className="text-white px-3 py-1 rounded-full text-sm font-medium" style={{ backgroundColor: '#f9b222' }}>
                       Featured
                     </span>
                   </div>
@@ -129,7 +129,7 @@ const Blog = () => {
                 
                 <div className="p-8 lg:p-12 flex flex-col justify-center">
                   <div className="flex items-center space-x-4 text-sm text-gray-500 mb-4">
-                    <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-medium">
+                    <span className="px-3 py-1 rounded-full font-medium" style={{ backgroundColor: '#f6f6f6', color: '#1a1a1a' }}>
                       {featuredPost.category}
                     </span>
                     <div className="flex items-center space-x-1">
@@ -142,7 +142,7 @@ const Blog = () => {
                     </div>
                   </div>
                   
-                  <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
+                  <h3 className="text-2xl lg:text-3xl font-bold mb-4" style={{ color: '#1a1a1a' }}>
                     {featuredPost.title}
                   </h3>
                   
@@ -152,13 +152,13 @@ const Blog = () => {
                   
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">
-                      <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                        <User className="h-5 w-5 text-blue-600" />
+                      <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ backgroundColor: '#f6f6f6' }}>
+                        <User className="h-5 w-5" style={{ color: '#f9b222' }} />
                       </div>
                       <span className="text-gray-700 font-medium">{featuredPost.author}</span>
                     </div>
                     
-                    <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-200 flex items-center space-x-2">
+                    <button className="text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-200 flex items-center space-x-2" style={{ backgroundColor: '#f9b222' }}>
                       <span>Read More</span>
                       <ArrowRight className="h-4 w-4" />
                     </button>
@@ -171,7 +171,7 @@ const Blog = () => {
       )}
 
       {/* Category Filter */}
-      <section className="py-8 bg-gray-50 border-b">
+      <section className="py-8 border-b" style={{ backgroundColor: '#f6f6f6' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center gap-3">
             {categories.map((category) => (
@@ -180,9 +180,12 @@ const Blog = () => {
                 onClick={() => setSelectedCategory(category)}
                 className={`px-4 py-2 rounded-lg font-medium transition-colors duration-200 ${
                   selectedCategory === category
-                    ? 'bg-blue-800 text-white'
+                    ? 'text-white'
                     : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
                 }`}
+                style={{
+                  backgroundColor: selectedCategory === category ? '#f9b222' : undefined
+                }}
               >
                 {category}
               </button>
@@ -192,7 +195,7 @@ const Blog = () => {
       </section>
 
       {/* Blog Posts Grid */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16" style={{ backgroundColor: '#f6f6f6' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredPosts.filter(post => !post.featured).map((post) => (
@@ -204,7 +207,7 @@ const Blog = () => {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   <div className="absolute top-4 left-4">
-                    <span className="bg-white bg-opacity-90 text-gray-800 px-3 py-1 rounded-full text-sm font-medium">
+                    <span className="bg-white bg-opacity-90 px-3 py-1 rounded-full text-sm font-medium" style={{ color: '#1a1a1a' }}>
                       {post.category}
                     </span>
                   </div>
@@ -222,7 +225,7 @@ const Blog = () => {
                     </div>
                   </div>
                   
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-200">
+                  <h3 className="text-xl font-bold mb-3 transition-colors duration-200" style={{ color: '#1a1a1a' }}>
                     {post.title}
                   </h3>
                   
@@ -232,13 +235,13 @@ const Blog = () => {
                   
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2">
-                      <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
+                      <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: '#f6f6f6' }}>
                         <User className="h-4 w-4 text-gray-600" />
                       </div>
                       <span className="text-sm text-gray-700">{post.author}</span>
                     </div>
                     
-                    <button className="text-blue-600 hover:text-blue-700 font-medium text-sm flex items-center space-x-1 transition-colors duration-200">
+                    <button className="font-medium text-sm flex items-center space-x-1 transition-colors duration-200" style={{ color: '#f9b222' }}>
                       <span>Read More</span>
                       <ArrowRight className="h-4 w-4" />
                     </button>
@@ -253,9 +256,9 @@ const Blog = () => {
       {/* Newsletter Signup */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="bg-gradient-to-r from-blue-800 to-blue-900 rounded-2xl p-8 lg:p-12 text-white">
+          <div className="rounded-2xl p-8 lg:p-12 text-white" style={{ background: 'linear-gradient(to right, #1a1a1a, #2d2d2d)' }}>
             <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
-            <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
               Subscribe to our newsletter for the latest insights on international shipping, 
               trade regulations, and export opportunities.
             </p>
@@ -264,14 +267,14 @@ const Blog = () => {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:ring-2 focus:ring-blue-300 focus:outline-none"
+                className="flex-1 px-4 py-3 rounded-lg focus:ring-2 focus:outline-none" style={{ color: '#1a1a1a', focusRingColor: '#f9b222' }}
               />
-              <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-200">
+              <button className="text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-200" style={{ backgroundColor: '#f9b222' }}>
                 Subscribe
               </button>
             </div>
             
-            <p className="text-sm text-blue-200 mt-4">
+            <p className="text-sm text-gray-300 mt-4">
               No spam, unsubscribe at any time. We respect your privacy.
             </p>
           </div>
@@ -279,10 +282,10 @@ const Blog = () => {
       </section>
 
       {/* Popular Topics */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16" style={{ backgroundColor: '#f6f6f6' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Popular Topics</h2>
+            <h2 className="text-3xl font-bold mb-4" style={{ color: '#1a1a1a' }}>Popular Topics</h2>
             <p className="text-lg text-gray-600">
               Explore our most read articles and guides
             </p>
@@ -301,7 +304,7 @@ const Blog = () => {
             ].map((topic, index) => (
               <div key={index} className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow duration-200 cursor-pointer text-center">
                 <div className="text-3xl mb-3">{topic.icon}</div>
-                <h3 className="font-semibold text-gray-900 mb-2">{topic.title}</h3>
+                <h3 className="font-semibold mb-2" style={{ color: '#1a1a1a' }}>{topic.title}</h3>
                 <p className="text-sm text-gray-600">{topic.count}</p>
               </div>
             ))}

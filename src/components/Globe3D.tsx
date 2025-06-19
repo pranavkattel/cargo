@@ -2,7 +2,7 @@ import React, { useRef, useMemo, Suspense, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Text, Sphere } from '@react-three/drei';
 import * as THREE from 'three';
-import ContinentDetailPanel from './ContinentDetailPanel'; // We will create this
+import ContinentDetailPanel from './ContinentDetailPanel';
 
 interface ContinentHotspotData {
   id: string;
@@ -78,7 +78,7 @@ const Globe = ({ onContinentClick }: { onContinentClick: (continent: ContinentHo
 
   useFrame(() => {
     if (meshRef.current) {
-      meshRef.current.rotation.y += 0.001; // Slower rotation
+      meshRef.current.rotation.y += 0.001;
     }
   });
 
@@ -94,29 +94,24 @@ const Globe = ({ onContinentClick }: { onContinentClick: (continent: ContinentHo
   return (
     <>
       <mesh ref={meshRef} geometry={useMemo(() => new THREE.SphereGeometry(globeRadius, 64, 64), [])}>
-        {/* Using a fallback material directly */}
-        <meshStandardMaterial color="royalblue" wireframe />
+        <meshStandardMaterial color="#0096C7" wireframe />
       </mesh>
 
       {continentsData.map((continent) => (
         <Sphere
           key={continent.id}
-          args={[0.15, 16, 16]} // Hotspot size
-          position={getPosition(continent.lat, continent.lng, globeRadius + 0.05)} // Slightly above surface
+          args={[0.15, 16, 16]}
+          position={getPosition(continent.lat, continent.lng, globeRadius + 0.05)}
           onClick={(e) => {
-            e.stopPropagation(); // Prevent OrbitControls from interfering
+            e.stopPropagation();
             onContinentClick(continent);
           }}
           onPointerOver={(e) => (e.object.scale.set(1.2, 1.2, 1.2), document.body.style.cursor = 'pointer')}
           onPointerOut={(e) => (e.object.scale.set(1, 1, 1), document.body.style.cursor = 'auto')}
         >
-          <meshBasicMaterial color="red" transparent opacity={0.3} /> {/* Make hotspots visible for debugging */}
+          <meshBasicMaterial color="#F9B222" transparent opacity={0.8} />
         </Sphere>
       ))}
-      
-      {/* Destination points (can be kept or removed) */}
-      {/* ... existing points code ... */}
-
 
       <ambientLight intensity={0.8} />
       <directionalLight position={[10, 10, 5]} intensity={1.2} />
@@ -153,24 +148,22 @@ const Globe3D = () => {
           {!selectedContinent && (
             <>
               <Text
-                color="white"
+                color="#FFFFFF"
                 anchorX="center"
                 anchorY="middle"
-                fontSize={0.3} // Adjust fontSize for 3D space
-                position={[0, 0.3, 2.5]} // Position in 3D space
-                // rotation={[0, Math.PI, 0]} // May not be needed or adjust as per camera
-                font="https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff" // Example font
+                fontSize={0.3}
+                position={[0, 0.3, 2.5]}
+                font="https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff"
               >
                 EXPLORE YOUR
               </Text>
               <Text
-                color="white"
+                color="#F9B222"
                 anchorX="center"
                 anchorY="middle"
-                fontSize={0.5} // Adjust fontSize for 3D space
-                position={[0, -0.1, 2.5]} // Position in 3D space
-                // rotation={[0, Math.PI, 0]}
-                font="https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff" // Example font
+                fontSize={0.5}
+                position={[0, -0.1, 2.5]}
+                font="https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff"
               >
                 WORLD
               </Text>
@@ -178,13 +171,12 @@ const Globe3D = () => {
           )}
           {selectedContinent && (
             <Text
-              color="white"
+              color="#F9B222"
               anchorX="center"
               anchorY="middle"
-              fontSize={0.4} // Adjust fontSize for 3D space
-              position={[0, 0, 2.5]} // Position in 3D space
-              // rotation={[0, Math.PI, 0]}
-              font="https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff" // Example font
+              fontSize={0.4}
+              position={[0, 0, 2.5]}
+              font="https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff"
             >
               {selectedContinent.name.toUpperCase()}
             </Text>

@@ -143,13 +143,13 @@ const Tracking = () => {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-800 to-blue-900 text-white py-20">
+      <section className="bg-gradient-to-r from-gray-800 to-gray-900 text-white py-20" style={{ backgroundColor: '#1a1a1a' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Track Your Cargo
             </h1>
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
               Enter your tracking number to get real-time updates on your shipment's location and delivery status.
             </p>
           </div>
@@ -157,12 +157,12 @@ const Tracking = () => {
       </section>
 
       {/* Tracking Form */}
-      <section className="py-16 bg-white">
+      <section className="py-16" style={{ backgroundColor: '#f6f6f6' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-8">
             <div className="text-center mb-8">
-              <Package className="h-12 w-12 text-blue-800 mx-auto mb-4" />
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">Enter Tracking Number</h2>
+              <Package className="h-12 w-12 mx-auto mb-4" style={{ color: '#f9b222' }} />
+              <h2 className="text-2xl font-bold mb-2" style={{ color: '#1a1a1a' }}>Enter Tracking Number</h2>
               <p className="text-gray-600">Your tracking number can be found in your shipping confirmation email</p>
             </div>
             
@@ -173,14 +173,31 @@ const Tracking = () => {
                   placeholder="Enter your tracking ID (e.g., NC001234)"
                   value={trackingId}
                   onChange={(e) => setTrackingId(e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:border-2 text-lg"
+                  style={{ 
+                    focusRingColor: '#f9b222',
+                    focusBorderColor: '#f9b222'
+                  }}
                   onKeyPress={(e) => e.key === 'Enter' && handleTrack()}
                 />
               </div>
               <button
                 onClick={handleTrack}
                 disabled={isLoading || !trackingId.trim()}
-                className="bg-blue-800 hover:bg-blue-900 disabled:bg-gray-400 text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center space-x-2"
+                className="text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center space-x-2 disabled:bg-gray-400"
+                style={{ 
+                  backgroundColor: isLoading || !trackingId.trim() ? '#9ca3af' : '#f9b222',
+                }}
+                onMouseEnter={(e) => {
+                  if (!isLoading && trackingId.trim()) {
+                    e.currentTarget.style.backgroundColor = '#e6a01e';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!isLoading && trackingId.trim()) {
+                    e.currentTarget.style.backgroundColor = '#f9b222';
+                  }
+                }}
               >
                 {isLoading ? (
                   <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
@@ -204,13 +221,13 @@ const Tracking = () => {
 
       {/* Tracking Results */}
       {trackingResult && (
-        <section className="py-16 bg-gray-50">
+        <section className="py-16" style={{ backgroundColor: '#f6f6f6' }}>
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Shipment Summary */}
             <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
               <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-6">
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                  <h2 className="text-2xl font-bold mb-2" style={{ color: '#1a1a1a' }}>
                     Tracking ID: {trackingResult.trackingId}
                   </h2>
                   <div className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(trackingResult.status)}`}>
@@ -220,40 +237,40 @@ const Tracking = () => {
                 </div>
                 <div className="mt-4 lg:mt-0 text-right">
                   <p className="text-sm text-gray-500">Service Type</p>
-                  <p className="text-lg font-semibold text-gray-900">{trackingResult.service}</p>
+                  <p className="text-lg font-semibold" style={{ color: '#1a1a1a' }}>{trackingResult.service}</p>
                 </div>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div className="flex items-center space-x-3">
-                  <MapPin className="h-5 w-5 text-green-600" />
+                  <MapPin className="h-5 w-5" style={{ color: '#f9b222' }} />
                   <div>
                     <p className="text-sm text-gray-500">From</p>
-                    <p className="font-semibold text-gray-900">{trackingResult.origin}</p>
+                    <p className="font-semibold" style={{ color: '#1a1a1a' }}>{trackingResult.origin}</p>
                   </div>
                 </div>
                 
                 <div className="flex items-center space-x-3">
-                  <MapPin className="h-5 w-5 text-red-600" />
+                  <MapPin className="h-5 w-5" style={{ color: '#f9b222' }} />
                   <div>
                     <p className="text-sm text-gray-500">To</p>
-                    <p className="font-semibold text-gray-900">{trackingResult.destination}</p>
+                    <p className="font-semibold" style={{ color: '#1a1a1a' }}>{trackingResult.destination}</p>
                   </div>
                 </div>
                 
                 <div className="flex items-center space-x-3">
-                  <Calendar className="h-5 w-5 text-blue-600" />
+                  <Calendar className="h-5 w-5" style={{ color: '#f9b222' }} />
                   <div>
                     <p className="text-sm text-gray-500">Expected Delivery</p>
-                    <p className="font-semibold text-gray-900">{trackingResult.estimatedDelivery}</p>
+                    <p className="font-semibold" style={{ color: '#1a1a1a' }}>{trackingResult.estimatedDelivery}</p>
                   </div>
                 </div>
                 
                 <div className="flex items-center space-x-3">
-                  <Package className="h-5 w-5 text-purple-600" />
+                  <Package className="h-5 w-5" style={{ color: '#f9b222' }} />
                   <div>
                     <p className="text-sm text-gray-500">Weight</p>
-                    <p className="font-semibold text-gray-900">{trackingResult.weight}</p>
+                    <p className="font-semibold" style={{ color: '#1a1a1a' }}>{trackingResult.weight}</p>
                   </div>
                 </div>
               </div>
@@ -261,7 +278,7 @@ const Tracking = () => {
 
             {/* Tracking Timeline */}
             <div className="bg-white rounded-xl shadow-lg p-8">
-              <h3 className="text-xl font-bold text-gray-900 mb-6">Shipment Timeline</h3>
+              <h3 className="text-xl font-bold mb-6" style={{ color: '#1a1a1a' }}>Shipment Timeline</h3>
               
               <div className="relative">
                 <div className="absolute left-6 top-8 bottom-8 w-0.5 bg-gray-200"></div>
@@ -321,13 +338,13 @@ const Tracking = () => {
       )}
 
       {trackingResult === null && trackingId && !isLoading && (
-        <section className="py-16 bg-gray-50">
+        <section className="py-16" style={{ backgroundColor: '#f6f6f6' }}>
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="bg-white rounded-xl shadow-lg p-8">
-              <div className="text-red-600 mb-4">
+              <div className="mb-4" style={{ color: '#f9b222' }}>
                 <Package className="h-12 w-12 mx-auto" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Tracking Number Not Found</h3>
+              <h3 className="text-xl font-semibold mb-2" style={{ color: '#1a1a1a' }}>Tracking Number Not Found</h3>
               <p className="text-gray-600 mb-6">
                 We couldn't find a shipment with tracking number "{trackingId}". 
                 Please check your tracking number and try again.
@@ -344,31 +361,31 @@ const Tracking = () => {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Need Help with Tracking?</h2>
+            <h2 className="text-3xl font-bold mb-4" style={{ color: '#1a1a1a' }}>Need Help with Tracking?</h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Common questions about tracking your shipment
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-gray-50 rounded-xl p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">Where is my tracking number?</h3>
+            <div className="rounded-xl p-6" style={{ backgroundColor: '#f6f6f6' }}>
+              <h3 className="text-lg font-semibold mb-3" style={{ color: '#1a1a1a' }}>Where is my tracking number?</h3>
               <p className="text-gray-600 text-sm">
                 Your tracking number is provided in the confirmation email sent when your shipment is processed. 
                 It usually starts with "NC" followed by 6 digits.
               </p>
             </div>
             
-            <div className="bg-gray-50 rounded-xl p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">Why isn't my tracking updating?</h3>
+            <div className="rounded-xl p-6" style={{ backgroundColor: '#f6f6f6' }}>
+              <h3 className="text-lg font-semibold mb-3" style={{ color: '#1a1a1a' }}>Why isn't my tracking updating?</h3>
               <p className="text-gray-600 text-sm">
                 Tracking information may take 24-48 hours to appear in the system. 
                 For international shipments, updates may be less frequent during transit.
               </p>
             </div>
             
-            <div className="bg-gray-50 rounded-xl p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">My package is delayed</h3>
+            <div className="rounded-xl p-6" style={{ backgroundColor: '#f6f6f6' }}>
+              <h3 className="text-lg font-semibold mb-3" style={{ color: '#1a1a1a' }}>My package is delayed</h3>
               <p className="text-gray-600 text-sm">
                 Delays can occur due to customs processing, weather, or other factors. 
                 Contact our support team if your package is significantly delayed.

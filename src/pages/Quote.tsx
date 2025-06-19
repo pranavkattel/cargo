@@ -496,13 +496,13 @@ const Quote = () => {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-800 to-blue-900 text-white py-20">
+      <section className="text-white py-20" style={{ background: 'linear-gradient(to right, #1a1a1a, #2d2d2d)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Get Your Quote
             </h1>
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
               Get an instant quote for your cargo shipment. Simply fill in your requirements 
               and receive a detailed cost breakdown within minutes.
             </p>
@@ -511,7 +511,7 @@ const Quote = () => {
       </section>
 
       {/* Quote Form */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16" style={{ backgroundColor: '#f6f6f6' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-xl shadow-lg p-8">
             {/* Progress Bar */}
@@ -521,15 +521,15 @@ const Quote = () => {
                   <div key={step} className="flex items-center">
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
                       currentStep >= step 
-                        ? 'bg-blue-600 text-white' 
+                        ? 'text-white' 
                         : 'bg-gray-200 text-gray-500'
-                    }`}>
+                    }`} style={{ backgroundColor: currentStep >= step ? '#f9b222' : undefined }}>
                       {step === 5 ? <Calculator className="h-4 w-4" /> : step}
                     </div>
                     {step < 5 && (
                       <div className={`w-full h-1 ml-2 ${
-                        currentStep > step ? 'bg-blue-600' : 'bg-gray-200'
-                      }`}></div>
+                        currentStep > step ? '' : 'bg-gray-200'
+                      }`} style={{ backgroundColor: currentStep > step ? '#f9b222' : undefined }}></div>
                     )}
                   </div>
                 ))}
@@ -559,7 +559,10 @@ const Quote = () => {
               {currentStep < 5 ? (
                 <button
                   onClick={nextStep}
-                  className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 flex items-center space-x-2"
+                  className="px-6 py-3 text-white rounded-lg transition-colors duration-200 flex items-center space-x-2"
+                  style={{ backgroundColor: '#f9b222' }}
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#e6a01e'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#f9b222'}
                 >
                   <span>{currentStep === 4 ? 'Calculate Quote' : 'Next'}</span>
                   {currentStep === 4 && <Calculator className="h-4 w-4" />}
@@ -568,11 +571,12 @@ const Quote = () => {
                 <div className="space-x-4">
                   <button
                     onClick={() => window.print()}
-                    className="px-6 py-3 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors duration-200"
+                    className="px-6 py-3 border text-gray-700 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+                    style={{ borderColor: '#f9b222', color: '#f9b222' }}
                   >
                     Print Quote
                   </button>
-                  <button className="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-200">
+                  <button className="px-6 py-3 text-white rounded-lg transition-colors duration-200" style={{ backgroundColor: '#f9b222' }}>
                     Book Shipment
                   </button>
                 </div>
@@ -586,7 +590,7 @@ const Quote = () => {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose Our Quote System?</h2>
+            <h2 className="text-3xl font-bold mb-4" style={{ color: '#1a1a1a' }}>Why Choose Our Quote System?</h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Transparent pricing with no hidden fees
             </p>
@@ -594,26 +598,26 @@ const Quote = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <DollarSign className="h-8 w-8 text-blue-600" />
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#f9b222' }}>
+                <DollarSign className="h-8 w-8 text-white" />
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Transparent Pricing</h3>
+              <h3 className="text-lg font-semibold mb-2" style={{ color: '#1a1a1a' }}>Transparent Pricing</h3>
               <p className="text-gray-600">No hidden fees - see exactly what you're paying for</p>
             </div>
             
             <div className="text-center">
-              <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Clock className="h-8 w-8 text-green-600" />
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#f9b222' }}>
+                <Clock className="h-8 w-8 text-white" />
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Instant Quotes</h3>
+              <h3 className="text-lg font-semibold mb-2" style={{ color: '#1a1a1a' }}>Instant Quotes</h3>
               <p className="text-gray-600">Get your quote immediately - no waiting required</p>
             </div>
             
             <div className="text-center">
-              <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Shield className="h-8 w-8 text-purple-600" />
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#f9b222' }}>
+                <Shield className="h-8 w-8 text-white" />
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Accurate Estimates</h3>
+              <h3 className="text-lg font-semibold mb-2" style={{ color: '#1a1a1a' }}>Accurate Estimates</h3>
               <p className="text-gray-600">Real-time pricing based on current market rates</p>
             </div>
           </div>

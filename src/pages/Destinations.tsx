@@ -151,7 +151,7 @@ const Destinations = () => {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-800 to-blue-900 text-white py-20">
+      <section className="text-white py-20" style={{ background: 'linear-gradient(to right, #0096C7, #007bb3)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -176,7 +176,11 @@ const Destinations = () => {
                 placeholder="Search destinations or cities..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:border-2"
+                style={{ 
+                  focusRingColor: '#F9B222',
+                  focusBorderColor: '#F9B222'
+                }}
               />
             </div>
             <div className="flex flex-wrap gap-2">
@@ -186,9 +190,13 @@ const Destinations = () => {
                   onClick={() => setSelectedRegion(region)}
                   className={`px-4 py-2 rounded-lg font-medium transition-colors duration-200 ${
                     selectedRegion === region
-                      ? 'bg-blue-800 text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      ? 'text-white'
+                      : 'text-gray-700 hover:bg-gray-200'
                   }`}
+                  style={{
+                    backgroundColor: selectedRegion === region ? '#F9B222' : '#FFFFFF',
+                    border: selectedRegion === region ? 'none' : '1px solid #e5e7eb'
+                  }}
                 >
                   {region}
                 </button>
@@ -202,7 +210,7 @@ const Destinations = () => {
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#0096C7' }}>
               Popular Destinations
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -217,9 +225,9 @@ const Destinations = () => {
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center space-x-3">
                       <span className="text-3xl">{destination.flag}</span>
-                      <h3 className="text-xl font-semibold text-gray-900">{destination.country}</h3>
+                      <h3 className="text-xl font-semibold" style={{ color: '#0096C7' }}>{destination.country}</h3>
                     </div>
-                    <span className="bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded-full">
+                    <span className="text-xs font-medium px-2 py-1 rounded-full" style={{ backgroundColor: '#F9B222', color: 'white' }}>
                       Popular
                     </span>
                   </div>
@@ -242,7 +250,7 @@ const Destinations = () => {
                       <span className="text-sm text-gray-500">Methods:</span>
                       <div className="flex space-x-2">
                         {destination.methods.map((method, methodIndex) => (
-                          <div key={methodIndex} className="flex items-center space-x-1 bg-blue-50 text-blue-700 px-2 py-1 rounded text-xs">
+                          <div key={methodIndex} className="flex items-center space-x-1 px-2 py-1 rounded text-xs bg-gray-100" style={{ color: '#0096C7' }}>
                             {getMethodIcon(method)}
                             <span>{method}</span>
                           </div>
@@ -250,8 +258,8 @@ const Destinations = () => {
                       </div>
                     </div>
                     
-                    <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
-                      <p className="text-xs text-yellow-800">{destination.restrictions}</p>
+                    <div className="border rounded-lg p-3 bg-orange-50" style={{ borderColor: '#F9B222' }}>
+                      <p className="text-xs" style={{ color: '#0096C7' }}>{destination.restrictions}</p>
                     </div>
                   </div>
                 </div>
@@ -265,7 +273,7 @@ const Destinations = () => {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#0096C7' }}>
               All Destinations
             </h2>
             <p className="text-lg text-gray-600">
@@ -280,12 +288,12 @@ const Destinations = () => {
                   <div className="flex items-center space-x-3">
                     <span className="text-2xl">{destination.flag}</span>
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900">{destination.country}</h3>
+                      <h3 className="text-lg font-semibold" style={{ color: '#0096C7' }}>{destination.country}</h3>
                       <p className="text-sm text-gray-500">{destination.region}</p>
                     </div>
                   </div>
                   {destination.popular && (
-                    <span className="bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded-full">
+                    <span className="text-xs font-medium px-2 py-1 rounded-full" style={{ backgroundColor: '#F9B222', color: 'white' }}>
                       Popular
                     </span>
                   )}
@@ -295,7 +303,7 @@ const Destinations = () => {
                   <div>
                     <div className="flex items-center space-x-2 mb-2">
                       <Clock className="h-4 w-4 text-gray-400" />
-                      <span className="text-sm font-medium text-gray-900">Delivery Time</span>
+                      <span className="text-sm font-medium" style={{ color: '#0096C7' }}>Delivery Time</span>
                     </div>
                     <p className="text-sm text-gray-600 ml-6">{destination.deliveryTime}</p>
                   </div>
@@ -303,7 +311,7 @@ const Destinations = () => {
                   <div>
                     <div className="flex items-center space-x-2 mb-2">
                       <MapPin className="h-4 w-4 text-gray-400" />
-                      <span className="text-sm font-medium text-gray-900">Major Cities</span>
+                      <span className="text-sm font-medium" style={{ color: '#0096C7' }}>Major Cities</span>
                     </div>
                     <p className="text-sm text-gray-600 ml-6">{destination.ports.join(', ')}</p>
                   </div>
@@ -311,11 +319,11 @@ const Destinations = () => {
                 
                 <div className="mt-4">
                   <div className="flex items-center space-x-2 mb-2">
-                    <span className="text-sm font-medium text-gray-900">Shipping Methods:</span>
+                    <span className="text-sm font-medium" style={{ color: '#0096C7' }}>Shipping Methods:</span>
                   </div>
                   <div className="flex space-x-2">
                     {destination.methods.map((method, methodIndex) => (
-                      <div key={methodIndex} className="flex items-center space-x-1 bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm">
+                      <div key={methodIndex} className="flex items-center space-x-1 px-3 py-1 rounded-full text-sm bg-gray-100" style={{ color: '#0096C7' }}>
                         {getMethodIcon(method)}
                         <span>{method}</span>
                       </div>
@@ -323,8 +331,8 @@ const Destinations = () => {
                   </div>
                 </div>
                 
-                <div className="mt-4 bg-gray-50 rounded-lg p-3">
-                  <p className="text-xs text-gray-700">{destination.restrictions}</p>
+                <div className="mt-4 rounded-lg p-3 bg-gray-50">
+                  <p className="text-xs" style={{ color: '#0096C7' }}>{destination.restrictions}</p>
                 </div>
               </div>
             ))}
@@ -342,7 +350,7 @@ const Destinations = () => {
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#0096C7' }}>
               Global Service Coverage
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -353,34 +361,34 @@ const Destinations = () => {
           <div className="bg-white rounded-xl shadow-lg p-8">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
               <div className="space-y-3">
-                <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto">
+                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto" style={{ backgroundColor: '#F9B222' }}>
                   <span className="text-2xl">🌏</span>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900">Asia-Pacific</h3>
+                <h3 className="text-xl font-semibold" style={{ color: '#0096C7' }}>Asia-Pacific</h3>
                 <p className="text-gray-600">15 Countries</p>
               </div>
               
               <div className="space-y-3">
-                <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto">
+                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto" style={{ backgroundColor: '#F9B222' }}>
                   <span className="text-2xl">🌍</span>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900">Europe</h3>
+                <h3 className="text-xl font-semibold" style={{ color: '#0096C7' }}>Europe</h3>
                 <p className="text-gray-600">20 Countries</p>
               </div>
               
               <div className="space-y-3">
-                <div className="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto">
+                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto" style={{ backgroundColor: '#F9B222' }}>
                   <span className="text-2xl">🌎</span>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900">Americas</h3>
+                <h3 className="text-xl font-semibold" style={{ color: '#0096C7' }}>Americas</h3>
                 <p className="text-gray-600">8 Countries</p>
               </div>
               
               <div className="space-y-3">
-                <div className="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto">
+                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto" style={{ backgroundColor: '#F9B222' }}>
                   <span className="text-2xl">🌍</span>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900">Middle East & Africa</h3>
+                <h3 className="text-xl font-semibold" style={{ color: '#0096C7' }}>Middle East & Africa</h3>
                 <p className="text-gray-600">7 Countries</p>
               </div>
             </div>
