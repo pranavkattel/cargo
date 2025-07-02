@@ -17,6 +17,7 @@ const Navbar = () => {
     { name: 'FAQ', href: '/faq' },
     { name: 'Blog', href: '/blog' },
     { name: 'Contact', href: '/contact' },
+    { name: 'Admin', href: '/admintracking' }, // Added admin link
   ];
 
   return (

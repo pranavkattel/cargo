@@ -11,6 +11,9 @@ import Quote from './pages/Quote';
 import FAQ from './pages/FAQ';
 import Blog from './pages/Blog';
 import Contact from './pages/Contact';
+import AdminTracking from './pages/AdminTracking';
+import AdminTest from './pages/AdminTest';
+import TestAPI from './pages/TestAPI';
 import TwakChat from './components/TwakChat';
 
 function App() {
@@ -29,6 +32,9 @@ function App() {
             <Route path="/faq" element={<FAQ />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/admin" element={<AdminTracking />} />
+            <Route path="/admin-test" element={<AdminTest />} />
+            <Route path="/test-api" element={<TestAPI />} />
           </Routes>
         </main>
         <Footer />

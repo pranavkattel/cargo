@@ -115,13 +115,13 @@ const FAQ = () => {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <section className="text-white py-20" style={{ background: 'linear-gradient(to right, #1a1a1a, #2d2d2d)' }}>
+      <section className="text-white py-20" style={{ background: 'linear-gradient(to right, #0096C7, #007bb3)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Frequently Asked Questions
             </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
               Find answers to common questions about our cargo services, shipping procedures, 
               and international logistics solutions.
             </p>
@@ -142,8 +142,8 @@ const FAQ = () => {
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:border-2"
                 style={{ 
-                  focusRingColor: '#f9b222',
-                  focusBorderColor: '#f9b222'
+                  focusRingColor: '#F9B222',
+                  focusBorderColor: '#F9B222'
                 }}
               />
             </div>
@@ -158,7 +158,8 @@ const FAQ = () => {
                       : 'text-gray-700 hover:bg-gray-200'
                   }`}
                   style={{
-                    backgroundColor: selectedCategory === category ? '#f9b222' : '#f6f6f6'
+                    backgroundColor: selectedCategory === category ? '#F9B222' : '#FFFFFF',
+                    border: selectedCategory === category ? 'none' : '1px solid #e5e7eb'
                   }}
                 >
                   {category}
@@ -170,7 +171,7 @@ const FAQ = () => {
       </section>
 
       {/* FAQ Content */}
-      <section className="py-16" style={{ backgroundColor: '#f6f6f6' }}>
+      <section className="py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {filteredFAQs.length > 0 ? (
             <div className="space-y-4">
@@ -181,10 +182,10 @@ const FAQ = () => {
                     className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200"
                   >
                     <div className="flex-1">
-                      <h3 className="text-lg font-semibold mb-1" style={{ color: '#1a1a1a' }}>
+                      <h3 className="text-lg font-semibold mb-1" style={{ color: '#0096C7' }}>
                         {faq.question}
                       </h3>
-                      <span className="text-sm font-medium" style={{ color: '#f9b222' }}>
+                      <span className="text-sm font-medium" style={{ color: '#F9B222' }}>
                         {faq.category}
                       </span>
                     </div>
@@ -212,7 +213,7 @@ const FAQ = () => {
           ) : (
             <div className="text-center py-12">
               <HelpCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-lg font-semibold mb-2" style={{ color: '#1a1a1a' }}>No FAQs Found</h3>
+              <h3 className="text-lg font-semibold mb-2" style={{ color: '#0096C7' }}>No FAQs Found</h3>
               <p className="text-gray-600">
                 No questions match your search criteria. Try adjusting your search terms or category filter.
               </p>
@@ -225,48 +226,48 @@ const FAQ = () => {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4" style={{ color: '#1a1a1a' }}>Still Need Help?</h2>
+            <h2 className="text-3xl font-bold mb-4" style={{ color: '#0096C7' }}>Still Need Help?</h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Can't find the answer you're looking for? Our customer support team is here to help.
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center p-6 rounded-xl" style={{ backgroundColor: '#f6f6f6' }}>
-              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#f9b222' }}>
+            <div className="text-center p-6 bg-gray-50 rounded-xl">
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#F9B222' }}>
                 <span className="text-2xl">📞</span>
               </div>
-              <h3 className="text-lg font-semibold mb-2" style={{ color: '#1a1a1a' }}>Call Us</h3>
+              <h3 className="text-lg font-semibold mb-2" style={{ color: '#0096C7' }}>Call Us</h3>
               <p className="text-gray-600 mb-4">Speak directly with our support team</p>
-              <p className="font-semibold" style={{ color: '#f9b222' }}>+977-1-4444-555</p>
+              <p className="font-semibold" style={{ color: '#F9B222' }}>+977-1-4444-555</p>
             </div>
             
-            <div className="text-center p-6 rounded-xl" style={{ backgroundColor: '#f6f6f6' }}>
-              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#f9b222' }}>
+            <div className="text-center p-6 bg-gray-50 rounded-xl">
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#F9B222' }}>
                 <span className="text-2xl">💬</span>
               </div>
-              <h3 className="text-lg font-semibold mb-2" style={{ color: '#1a1a1a' }}>Live Chat</h3>
+              <h3 className="text-lg font-semibold mb-2" style={{ color: '#0096C7' }}>Live Chat</h3>
               <p className="text-gray-600 mb-4">Chat with us in real-time</p>
-              <p className="font-semibold" style={{ color: '#f9b222' }}>Available 24/7</p>
+              <p className="font-semibold" style={{ color: '#F9B222' }}>Available 24/7</p>
             </div>
             
-            <div className="text-center p-6 rounded-xl" style={{ backgroundColor: '#f6f6f6' }}>
-              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#f9b222' }}>
+            <div className="text-center p-6 bg-gray-50 rounded-xl">
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#F9B222' }}>
                 <span className="text-2xl">✉️</span>
               </div>
-              <h3 className="text-lg font-semibold mb-2" style={{ color: '#1a1a1a' }}>Email Us</h3>
+              <h3 className="text-lg font-semibold mb-2" style={{ color: '#0096C7' }}>Email Us</h3>
               <p className="text-gray-600 mb-4">Send us your questions</p>
-              <p className="font-semibold" style={{ color: '#f9b222' }}>info@nepalcargo.com</p>
+              <p className="font-semibold" style={{ color: '#F9B222' }}>info@capitalcargo.com</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Popular Topics */}
-      <section className="py-16" style={{ backgroundColor: '#f6f6f6' }}>
+      <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4" style={{ color: '#1a1a1a' }}>Popular Help Topics</h2>
+            <h2 className="text-3xl font-bold mb-4" style={{ color: '#0096C7' }}>Popular Help Topics</h2>
             <p className="text-lg text-gray-600">
               Quick access to our most searched topics
             </p>
@@ -285,7 +286,7 @@ const FAQ = () => {
             ].map((topic, index) => (
               <div key={index} className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow duration-200 cursor-pointer">
                 <div className="text-2xl mb-2">{topic.icon}</div>
-                <h3 className="font-semibold mb-1" style={{ color: '#1a1a1a' }}>{topic.title}</h3>
+                <h3 className="font-semibold mb-1" style={{ color: '#0096C7' }}>{topic.title}</h3>
                 <p className="text-sm text-gray-600">{topic.description}</p>
               </div>
             ))}
