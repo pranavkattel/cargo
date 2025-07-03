@@ -8,6 +8,64 @@ console.log('Is production:', import.meta.env.PROD);
 console.log('VITE_API_URL:', import.meta.env.VITE_API_URL);
 console.log('Final API_BASE_URL:', API_BASE_URL);
 
+// Dropdown option interfaces
+export interface DropdownOption {
+  value: string;
+  label: string;
+  description?: string;
+  color?: string;
+  icon?: string;
+  price?: string;
+  estimatedDays?: number;
+  popular?: boolean;
+  region?: string;
+  code?: string;
+}
+
+export interface ServiceRecommendation extends DropdownOption {
+  recommendationScore: number;
+  reasons: string[];
+  recommended: boolean;
+  rank: number;
+  confidence: 'high' | 'medium' | 'low';
+}
+
+export interface ValidationResult {
+  isValid: boolean;
+  errors: string[];
+  suggestions: string[];
+  validationScore: number;
+  formattedAddress?: string;
+  formattedTrackingId?: string;
+  addressComponents?: {
+    street: string;
+    city: string;
+    state: string;
+    zipCode: string;
+    country: string;
+  };
+}
+
+export interface ShipmentStatistics {
+  summary: {
+    totalShipments: number;
+    deliveredShipments: number;
+    inTransitShipments: number;
+    processingShipments: number;
+    activeShipments: number;
+    deliveryRate: number;
+  };
+  breakdowns: {
+    status: Array<{ _id: string; count: number }>;
+    serviceType: Array<{ _id: string; count: number }>;
+  };
+  metrics: {
+    timeframe: string;
+    generatedAt: string;
+    performanceScore: string;
+  };
+}
+
 export interface TrackingEvent {
   status: string;
   description: string;
@@ -360,5 +418,261 @@ class TrackingService {
     return mockData[trackingId] || null;
   }
 }
+
+// Dropdown and validation API functions
+export const trackingAPI = {
+  // Existing shipment CRUD operations
+  trackShipment: async (trackingId: string): Promise<ShipmentData | null> => {
+    try {
+      const response = await new TrackingService().trackShipment(trackingId);
+      
+      if (response) {
+        return response;
+      } else {
+        // Fallback to mock data if tracking not found
+        console.log('Tracking not found, using mock data');
+        return new TrackingService().generateMockTrackingData(trackingId);
+      }
+    } catch (error) {
+      console.error('Error tracking shipment:', error);
+      throw error;
+    }
+  },
+  
+  createShipment: async (shipmentData: Omit<ShipmentData, '_id' | 'trackingId' | 'createdAt' | 'updatedAt'>): Promise<ShipmentData> => {
+    return await new TrackingService().createShipment(shipmentData);
+  },
+  
+  updateShipmentStatus: async (
+    trackingId: string, 
+    status: string, 
+    description: string, 
+    location: string
+  ): Promise<ShipmentData> => {
+    return await new TrackingService().updateShipmentStatus(trackingId, status, description, location);
+  },
+
+  getAllShipments: async (page: number = 1, limit: number = 10, status?: string): Promise<ApiResponse<ShipmentData[]>> => {
+    return await new TrackingService().getAllShipments(page, limit, status);
+  },
+
+  // Get all dropdown options
+  getDropdownOptions: async (): Promise<Record<string, DropdownOption[]>> => {
+    try {
+      console.log('🔍 Fetching all dropdown options...');
+      const response = await fetch(`${API_BASE_URL}/shipments/dropdown-options`);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const result = await response.json();
+      console.log('✅ Dropdown options fetched successfully:', result.data);
+      return result.data;
+    } catch (error) {
+      console.error('❌ Error fetching dropdown options:', error);
+      throw error;
+    }
+  },
+
+  // Get filtered dropdown options for a specific category
+  getFilteredDropdownOptions: async (
+    category: string, 
+    filters?: { filter?: string; region?: string; priceRange?: string }
+  ): Promise<DropdownOption[]> => {
+    try {
+      console.log(`🔍 Fetching filtered ${category} options...`, filters);
+      
+      const queryParams = new URLSearchParams();
+      if (filters?.filter) queryParams.append('filter', filters.filter);
+      if (filters?.region) queryParams.append('region', filters.region);
+      if (filters?.priceRange) queryParams.append('priceRange', filters.priceRange);
+      
+      const url = `${API_BASE_URL}/shipments/dropdown-options/${category}${queryParams.toString() ? `?${queryParams.toString()}` : ''}`;
+      const response = await fetch(url);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const result = await response.json();
+      console.log(`✅ Filtered ${category} options fetched successfully:`, result.data);
+      return result.data;
+    } catch (error) {
+      console.error(`❌ Error fetching filtered ${category} options:`, error);
+      throw error;
+    }
+  },
+
+  // Get service recommendations
+  getServiceRecommendations: async (criteria: {
+    urgency?: string;
+    budget?: string;
+    destination?: string;
+    weight?: string;
+    packageType?: string;
+  }): Promise<{
+    recommendations: ServiceRecommendation[];
+    topRecommendation: ServiceRecommendation;
+    alternativeOptions: ServiceRecommendation[];
+  }> => {
+    try {
+      console.log('🔍 Getting service recommendations...', criteria);
+      
+      const response = await fetch(`${API_BASE_URL}/shipments/service-recommendations`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(criteria),
+      });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const result = await response.json();
+      console.log('✅ Service recommendations fetched successfully:', result.data);
+      return result.data;
+    } catch (error) {
+      console.error('❌ Error getting service recommendations:', error);
+      throw error;
+    }
+  },
+
+  // Validate address
+  validateAddress: async (address: {
+    street: string;
+    city: string;
+    state: string;
+    zipCode: string;
+    country: string;
+  }): Promise<ValidationResult> => {
+    try {
+      console.log('🔍 Validating address...', address);
+      
+      const response = await fetch(`${API_BASE_URL}/shipments/validate-address`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ address }),
+      });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const result = await response.json();
+      console.log('✅ Address validation completed:', result.data);
+      return result.data;
+    } catch (error) {
+      console.error('❌ Error validating address:', error);
+      throw error;
+    }
+  },
+
+  // Validate tracking ID
+  validateTrackingId: async (trackingId: string): Promise<ValidationResult> => {
+    try {
+      console.log('🔍 Validating tracking ID...', trackingId);
+      
+      const response = await fetch(`${API_BASE_URL}/shipments/validate-tracking-id`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ trackingId }),
+      });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const result = await response.json();
+      console.log('✅ Tracking ID validation completed:', result.data);
+      return result.data;
+    } catch (error) {
+      console.error('❌ Error validating tracking ID:', error);
+      throw error;
+    }
+  },
+
+  // Get shipment statistics
+  getStatistics: async (timeframe: '7d' | '30d' | '90d' = '30d'): Promise<ShipmentStatistics> => {
+    try {
+      console.log(`🔍 Fetching shipment statistics for ${timeframe}...`);
+      
+      const response = await fetch(`${API_BASE_URL}/shipments/statistics?timeframe=${timeframe}`);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const result = await response.json();
+      console.log('✅ Statistics fetched successfully:', result.data);
+      return result.data;
+    } catch (error) {
+      console.error('❌ Error fetching statistics:', error);
+      throw error;
+    }
+  },
+
+  // Calculate delivery date
+  calculateDeliveryDate: async (serviceType: string, startDate: string): Promise<string> => {
+    try {
+      console.log('🔍 Calculating delivery date...', { serviceType, startDate });
+      
+      const response = await fetch(`${API_BASE_URL}/shipments/calculate-delivery-date`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ serviceType, startDate }),
+      });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const result = await response.json();
+      console.log('✅ Delivery date calculated:', result.data.estimatedDelivery);
+      return result.data.estimatedDelivery;
+    } catch (error) {
+      console.error('❌ Error calculating delivery date:', error);
+      throw error;
+    }
+  },
+
+  // Bulk operations
+  bulkUpdate: async (operation: 'update-status' | 'delete', shipmentIds: string[], updateData?: any): Promise<{
+    successful: Array<{ id: string; trackingId: string }>;
+    failed: Array<{ id: string; reason: string }>;
+    total: number;
+  }> => {
+    try {
+      console.log('🔍 Performing bulk operation...', { operation, shipmentIds, updateData });
+      
+      const response = await fetch(`${API_BASE_URL}/shipments/bulk-update`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ operation, shipmentIds, updateData }),
+      });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const result = await response.json();
+      console.log('✅ Bulk operation completed:', result.data);
+      return result.data;
+    } catch (error) {
+      console.error('❌ Error performing bulk operation:', error);
+      throw error;
+    }
+  }
+};
 
 export default new TrackingService();

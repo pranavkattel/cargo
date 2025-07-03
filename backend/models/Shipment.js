@@ -91,7 +91,7 @@ const ShipmentDetailsSchema = new mongoose.Schema({
   serviceType: {
     type: String,
     required: true,
-    enum: ['standard', 'express', 'overnight', 'international'],
+    enum: ['standard', 'express', 'overnight', 'international', 'freight'],
     default: 'standard'
   },
   description: {
@@ -114,6 +114,12 @@ const ShipmentSchema = new mongoose.Schema({
     trim: true,
     uppercase: true
   },
+  serviceType: {
+    type: String,
+    required: true,
+    enum: ['standard', 'express', 'overnight', 'international', 'freight'],
+    default: 'standard'
+  },
   customerInfo: {
     type: CustomerInfoSchema,
     required: true
@@ -125,7 +131,7 @@ const ShipmentSchema = new mongoose.Schema({
   status: {
     type: String,
     required: true,
-    enum: ['processing', 'in transit', 'out for delivery', 'delivered', 'exception'],
+    enum: ['processing', 'picked-up', 'in-transit', 'out-for-delivery', 'delivered', 'failed-delivery', 'returned', 'cancelled'],
     default: 'processing'
   },
   events: [TrackingEventSchema],
@@ -136,6 +142,10 @@ const ShipmentSchema = new mongoose.Schema({
   actualDelivery: {
     type: Date,
     required: false
+  },
+  lastUpdated: {
+    type: Date,
+    default: Date.now
   }
 }, {
   timestamps: true,
