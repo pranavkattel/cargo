@@ -1,0 +1,49 @@
+{
+  "shipments": [
+    {
+      "id": "1",
+      "trackingId": "CC001234567",
+      "status": "In Transit",
+      "customerInfo": {
+        "name": "John Smith",
+        "email": "john.smith@email.com",
+        "phone": "+1-555-0123",
+        "address": "123 Main St, New York, NY 10001"
+      },
+      "shipmentDetails": {
+        "origin": "New York, USA",
+        "destination": "London, UK",
+        "weight": "25kg",
+        "dimensions": "50x40x30cm",
+        "service": "Express International",
+        "estimatedDelivery": "2025-07-20T10:00:00Z"
+      },
+      "trackingEvents": [
+        {
+          "id": "evt1",
+          "status": "Package Picked Up",
+          "description": "Package has been picked up from sender",
+          "location": "New York Distribution Center",
+          "timestamp": "2025-07-14T09:00:00Z",
+          "completed": true
+        },
+        {
+          "id": "evt2",
+          "status": "In Transit",
+          "description": "Package is on its way to destination",
+          "location": "JFK International Airport",
+          "timestamp": "2025-07-15T14:30:00Z",
+          "completed": true
+        }
+      ],
+      "createdAt": "2025-07-14T09:00:00Z",
+      "updatedAt": "2025-07-15T14:30:00Z"
+    }
+  ],
+  "metadata": {
+    "version": "1.0",
+    "lastBackup": "2025-07-15T15:04:46.608Z",
+    "totalShipments": 1,
+    "lastUpdated": "2025-07-15T15:04:46.608Z"
+  }
+}
