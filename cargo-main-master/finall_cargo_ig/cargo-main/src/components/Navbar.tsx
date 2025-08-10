@@ -15,7 +15,7 @@ const Navbar = () => {
     { name: 'Tracking', href: '/tracking' },
     { name: 'Quote', href: '/quote' },
     { name: 'FAQ', href: '/faq' },
-    { name: 'Blog', href: '/blog' },
+    
     { name: 'Contact', href: '/contact' },
     { name: 'Admin', href: '/admin-panel' }, // Added admin link
   ];

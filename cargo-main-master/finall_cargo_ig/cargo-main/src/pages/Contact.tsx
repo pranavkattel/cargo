@@ -76,19 +76,19 @@ const Contact = () => {
     {
       icon: Phone,
       title: 'Call Us',
-      details: ['+977-1-4444-555', '+977-1-4444-556'],
+      details: ['+977 01-5367883', '+977 01-5368837'],
       color: 'text-green-600'
     },
     {
       icon: Mail,
       title: 'Email Us',
-      details: ['info@nepalcargo.com', 'support@nepalcargo.com'],
+      details: ['info@capitalcargo.com'],
       color: 'text-purple-600'
     },
     {
       icon: Clock,
       title: 'Business Hours',
-      details: ['Mon - Fri: 9:00 AM - 6:00 PM', 'Sat: 9:00 AM - 4:00 PM'],
+      details: ['Sun - Fri: 10:00 AM - 6:00 PM' , 'Sat: Closed'],
       color: 'text-orange-600'
     }
   ];

@@ -85,7 +85,6 @@ const Blog = () => {
     : blogPosts.filter(post => post.category === selectedCategory);
 
   const featuredPost = blogPosts.find(post => post.featured);
-  const regularPosts = blogPosts.filter(post => !post.featured);
 
   return (
     <div className="pt-16">
@@ -267,7 +266,7 @@ const Blog = () => {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-lg focus:ring-2 focus:outline-none" style={{ color: '#1a1a1a', focusRingColor: '#f9b222' }}
+                className="flex-1 px-4 py-3 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:outline-none text-gray-900"
               />
               <button className="text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-200" style={{ backgroundColor: '#f9b222' }}>
                 Subscribe
